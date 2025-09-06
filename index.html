@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Horticulture Website</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
       margin: 0;
@@ -21,6 +22,7 @@
       display: flex;
       justify-content: center;
       background: #256d47;
+      flex-wrap: wrap;
     }
     nav a {
       color: white;
@@ -59,6 +61,62 @@
       padding: 15px;
       margin-top: 30px;
     }
+    .charts {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    canvas {
+      max-width: 400px;
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    /* Fancy Floating Feedback Button */
+    .feedback-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(45deg, #ff5722, #ff9800);
+      color: white;
+      text-decoration: none;
+      padding: 14px 22px;
+      border-radius: 50px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      animation: pop 1.5s infinite alternate;
+    }
+    .feedback-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+
+    /* Pop-up animation */
+    @keyframes pop {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); }
+    }
+
+    /* Importance Section */
+    .importance {
+      text-align: left;
+      max-width: 900px;
+      margin: auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      line-height: 1.8;
+    }
+    .importance h3 {
+      color: #2e8b57;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -70,6 +128,8 @@
   <nav>
     <a href="#home">Home</a>
     <a href="#gallery">Gallery</a>
+    <a href="#importance">Importance</a>
+    <a href="#progress">Progress</a>
   </nav>
 
   <!-- Home Section -->
@@ -81,9 +141,9 @@
     </p>
     <div class="names">
       <b>Created By:</b><br>
-      Kartik Dhangar & Suraj Nemale <br><br>
+      <b>Mr. Kartik Dhangar</b> & <b>Mr. Suraj Nemade</b> <br><br>
       <b>Guided By:</b><br>
-      Dr. S. L. Kurkute
+      <b>Dr. S. L. Kurkute</b>
     </div>
   </section>
 
@@ -94,11 +154,98 @@
       <img src="https://ashs.org/resource/resmgr/site_content/AdobeStock_404641357__1_.jpg" alt="Horticulture Field">
       <img src="https://knnindia.co.in/uploads/newsfiles/Horticulture-16-7-2021.jpg" alt="Horticulture Production">
       <img src="https://iht.edu.in/wp-content/uploads/2024/11/horticulture-in-india.jpeg" alt="Horticulture in India">
+
+      <!-- New Images -->
+      <img src="https://kj1bcdn.b-cdn.net/media/8924/horticulture.jpg" alt="Horticulture Image 4">
+      <img src="https://m.economictimes.com/thumb/height-450,width-600,imgsize-190499,msid-65823944/as-a-horticulture-boom-pushes-up-farm-incomes-here-are-two-key-missing-pieces.jpg" alt="Horticulture Image 5">
+      <img src="https://www.nhb.gov.in/css/images/left3.png" alt="Horticulture Image 6">
+    </div>
+  </section>
+
+  <!-- Importance Section -->
+  <section id="importance">
+    <h2>Importance of Horticulture</h2>
+    <div class="importance">
+      <p>
+        Horticulture is important for enriching diets with essential vitamins and minerals, providing high-value income and employment opportunities for farmers, and fostering economic development through increased exports and raw material supply to food processing industries. It also benefits the environment by promoting sustainable practices, conserving water and soil, and enhancing landscapes through ornamental plants and green spaces.
+      </p>
+
+      <h3>Nutritional & Health Benefits</h3>
+      <p><b>Improved Diets:</b> Horticulture directly contributes to a balanced diet by providing a wide array of fruits and vegetables, which are critical sources of essential nutrients, vitamins, and minerals.</p>
+      <p><b>Food Security:</b> By increasing the production of high-nutrient crops, horticulture plays a vital role in meeting the food and nutritional needs of a growing global population.</p>
+      <p><b>Medicinal Value:</b> Many horticultural plants also possess medicinal properties and compounds that benefit human health.</p>
+
+      <h3>Economic Benefits</h3>
+      <p><b>Increased Income:</b> High-value horticultural crops offer farmers a significant alternative and complementary income source, improving their livelihoods and reducing vulnerability.</p>
+      <p><b>Employment Generation:</b> The cultivation of fruits, vegetables, and ornamental plants requires more labor than traditional crops, creating numerous employment opportunities, especially in rural areas and for women.</p>
+      <p><b>Export Earnings:</b> Horticulture can significantly boost a country's foreign exchange earnings through the export of high-quality produce.</p>
+      <p><b>Raw Materials:</b> It provides essential raw materials for food processing industries, contributing to economic diversification.</p>
+
+      <h3>Environmental Benefits</h3>
+      <p><b>Sustainable Practices:</b> Horticulture encourages the adoption of sustainable and environmentally friendly methods, including organic farming and water conservation.</p>
+      <p><b>Carbon Sequestration:</b> Growing trees and plants helps to absorb carbon dioxide from the atmosphere, reducing air pollution and mitigating climate change.</p>
+      <p><b>Soil and Water Conservation:</b> Horticultural practices can help conserve soil fertility and water resources.</p>
+      <p><b>Aesthetic Value:</b> The science of ornamental plants and landscape design creates beautiful and soothing green spaces, improving mental well-being and enhancing the environment.</p>
+    </div>
+  </section>
+
+  <!-- Progress Section -->
+  <section id="progress">
+    <h2>Progress in Horticulture</h2>
+    <p>Here we compare Indian horticulture with other countries and also the difference between Engineering-side and Agriculture-side horticulture.</p>
+    <div class="charts">
+      <canvas id="indiaVsWorld"></canvas>
+      <canvas id="engVsAgri"></canvas>
     </div>
   </section>
 
   <footer>
-    <p>&copy; 2025 Horticulture Project | Created by Kartik & Suraj | Guided by Dr. S. L. Kurkute</p>
+    <p>&copy; 2025 Horticulture Project | Created by <b>Mr. Kartik</b> & <b>Mr. Suraj</b> | Guided by <b>Dr. S. L. Kurkute</b></p>
   </footer>
+
+  <!-- Stylish Feedback Button -->
+  <a class="feedback-btn" href="mailto:kartikdhangar33@gmail.com?subject=Feedback on Horticulture Website">
+    ✉ Feedback
+  </a>
+
+  <script>
+    // Chart 1: India vs Other Countries
+    const ctx1 = document.getElementById('indiaVsWorld').getContext('2d');
+    new Chart(ctx1, {
+      type: 'bar',
+      data: {
+        labels: ['India', 'Other Countries'],
+        datasets: [{
+          label: 'Horticulture Progress (%)',
+          data: [85, 70], // Example values
+          backgroundColor: ['#2e8b57', '#4caf50']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true, max: 100 } }
+      }
+    });
+
+    // Chart 2: Engineering vs Agriculture-side Horticulture
+    const ctx2 = document.getElementById('engVsAgri').getContext('2d');
+    new Chart(ctx2, {
+      type: 'bar',
+      data: {
+        labels: ['Engineering-side Horticulture', 'Agriculture-side Horticulture'],
+        datasets: [{
+          label: 'Development Level (%)',
+          data: [60, 90], // Example values
+          backgroundColor: ['#ff9800', '#2196f3']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true, max: 100 } }
+      }
+    });
+  </script>
 </body>
 </html>
